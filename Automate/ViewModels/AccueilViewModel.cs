@@ -64,6 +64,7 @@ namespace Automate.ViewModels
         public ICommand PreviousMonthCommand { get; }
         public ICommand NextMonthCommand { get; }
         public ICommand ViewCalendarCommand { get; }
+        public ICommand ViewSerreCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -87,6 +88,7 @@ namespace Automate.ViewModels
 
             // Initialisation des commandes
             ViewCalendarCommand = new RelayCommand(OpenModificationWindow);
+            ViewSerreCommand = new RelayCommand(OpenSerreWindow);
             PreviousMonthCommand = new RelayCommand(GoToPreviousMonth);
             NextMonthCommand = new RelayCommand(GoToNextMonth);
 
@@ -121,6 +123,15 @@ namespace Automate.ViewModels
         {
             var modificationWindow = new ModificationWindow(IsAdmin);
             modificationWindow.Show();
+        }
+
+        /// <summary>
+        /// Ouvrir la fenêtre de serre.
+        /// </summary>
+        private void OpenSerreWindow()
+        {
+            var serreWindow = new SerreWindow();
+            serreWindow.Show();
         }
 
         /// <summary>

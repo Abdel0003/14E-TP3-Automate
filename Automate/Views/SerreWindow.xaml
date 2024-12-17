@@ -1,0 +1,74 @@
+﻿<Window x:Class="Automate.Views.SerreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Automate.Views"
+        mc:Ignorable="d"
+        Title="SerreWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <!-- Partie supérieure -->
+            <RowDefinition Height="*"/>
+            <!-- Conseils climatiques -->
+            <RowDefinition Height="Auto"/>
+            <!-- Contrôle météo -->
+        </Grid.RowDefinitions>
+
+        <!-- États graphiques des systèmes -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Fenêtres -->
+            <StackPanel>
+                <TextBlock Text="Fenêtres" FontWeight="Bold" FontSize="14" TextAlignment="Center"/>
+                <ToggleButton Content="{Binding FenetresState}" Width="100" Height="50"
+                              Command="{Binding ToggleFenetresCommand}" 
+                              Background="{Binding FenetresColor}"/>
+            </StackPanel>
+            <!-- Chauffage -->
+            <StackPanel>
+                <TextBlock Text="Chauffage" FontWeight="Bold" FontSize="14" TextAlignment="Center"/>
+                <ToggleButton Content="{Binding ChauffageState}" Width="100" Height="50"
+                              Command="{Binding ToggleChauffageCommand}"
+                              Background="{Binding ChauffageColor}"/>
+            </StackPanel>
+            <!-- Ventilateur -->
+            <StackPanel>
+                <TextBlock Text="Ventilateur" FontWeight="Bold" FontSize="14" TextAlignment="Center"/>
+                <ToggleButton Content="{Binding VentilateurState}" Width="100" Height="50"
+                              Command="{Binding ToggleVentilateurCommand}"
+                              Background="{Binding VentilateurColor}"/>
+            </StackPanel>
+            <!-- Arrosage -->
+            <StackPanel>
+                <TextBlock Text="Arrosage" FontWeight="Bold" FontSize="14" TextAlignment="Center"/>
+                <ToggleButton Content="{Binding ArrosageState}" Width="100" Height="50"
+                              Command="{Binding ToggleArrosageCommand}"
+                              Background="{Binding ArrosageColor}"/>
+            </StackPanel>
+            <!-- Lumière -->
+            <StackPanel>
+                <TextBlock Text="Lumière" FontWeight="Bold" FontSize="14" TextAlignment="Center"/>
+                <ToggleButton Content="{Binding LumiereState}" Width="100" Height="50"
+                              Command="{Binding ToggleLumiereCommand}"
+                              Background="{Binding LumiereColor}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Conseils climatiques -->
+        <GroupBox Grid.Row="1" Header="Suggestions Climatiques" Margin="10">
+            <StackPanel Margin="20">
+
+                <TextBlock Text="{Binding TemperatureSuggestion}" Foreground="Red" Margin="0,5"/>
+                <TextBlock Text="{Binding HumiditySuggestion}" Foreground="Blue" Margin="0,5"/>
+                <TextBlock Text="{Binding LuminositySuggestion}" Foreground="Green" Margin="0,5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Contrôle lecture météo -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Démarrer la lecture" Command="{Binding StartReadingCommand}" Width="150" Height="40" Margin="0 0 20 0"/>
+            <Button Content="Arrêter la lecture" Command="{Binding StopReadingCommand}" Width="150" Height="40"/>
+        </StackPanel>
+    </Grid>
+</Window>
