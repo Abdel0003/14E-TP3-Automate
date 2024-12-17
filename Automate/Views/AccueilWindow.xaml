@@ -1,0 +1,102 @@
+﻿<Window x:Class="Automate.Views.AccueilWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AccueilWindow" Height="600" Width="800" Background="#f0f2f5" Loaded="Window_Loaded">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <!-- AccueilWindow.xaml -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Affichage du message de bienvenue -->
+                <TextBlock Text="{Binding Username, StringFormat='Bienvenue, {0} !'}" 
+               FontSize="24" FontWeight="Bold" Foreground="#333" HorizontalAlignment="Center" Margin="20"/>
+
+                <!-- Bouton pour consulter le calendrier -->
+                <Button Content="Consulter le calendrier" Width="200" Height="40" Margin="20"
+            Command="{Binding ViewCalendarCommand}"/>
+            </StackPanel>
+
+            <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                --><!-- Titre du Mois --><!--
+                <TextBlock Text="{Binding CurrentMonthYear}" FontSize="28" FontWeight="Bold"
+                       Foreground="#333" Margin="20" HorizontalAlignment="Center"/>
+
+                --><!-- Navigation entre les mois --><!--
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="◄ Mois Précédent" Command="{Binding PreviousMonthCommand}" 
+                        Margin="10" Padding="8,4" 
+                        Background="#4CAF50" Foreground="White" 
+                        FontWeight="SemiBold" BorderBrush="{x:Null}" 
+                        />
+                    <Button Content="Mois Suivant ►" Command="{Binding NextMonthCommand}" 
+                        Margin="10" Padding="8,4" 
+                        Background="#4CAF50" Foreground="White" 
+                        FontWeight="SemiBold" BorderBrush="{x:Null}" 
+                        />
+                </StackPanel>
+                <Grid>
+                    --><!-- Affichage du Calendrier --><!--
+                    <ItemsControl ItemsSource="{Binding CalendarDays}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="7" Rows="6"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" CornerRadius="8" 
+                                    BorderBrush="#DDD" BorderThickness="1" 
+                                    Padding="5" Margin="5" 
+                                    Effect="{DynamicResource DropShadowEffect}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Day}" FontWeight="Bold" 
+                                               HorizontalAlignment="Center" Foreground="#333"/>
+                                        <ItemsControl ItemsSource="{Binding Tasks}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Nom}" FontSize="10" Foreground="#555" Background="{Binding Legende}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                        <TextBlock Text="{Binding JourSelect}"/>
+                    </StackPanel>
+                </Grid>
+                --><!-- Légende --><!--
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock Text="Légende" FontSize="18" FontWeight="Bold" Foreground="#333" Margin="0,0,0,10"/>
+                    <ItemsControl ItemsSource="{Binding LegendItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="14" Foreground="#555"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button x:Name="btnModifier" Width="75"
+                        Command="{Binding ModifierTache}" 
+                        Margin="10" Padding="8,4" 
+                        Background="#4CAF50" Foreground="White" 
+                        FontWeight="SemiBold" BorderBrush="{x:Null}" 
+                        > Modifier</Button>
+                <Button x:Name="btnAjouter" Width="75"
+                        Command="{Binding AjouterTache}" 
+                        Margin="10" Padding="8,4" 
+                        Background="#4CAF50" Foreground="White" 
+                        FontWeight="SemiBold" BorderBrush="{x:Null}" 
+                        >Ajouter</Button>
+            </StackPanel>-->
+        </Grid>
+    </ScrollViewer>
+    <!-- Définir DropShadowEffect pour l'ombre -->
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" ShadowDepth="2" Color="Gray" Opacity="0.3" BlurRadius="8"/>
+    </Window.Resources>
+</Window>
