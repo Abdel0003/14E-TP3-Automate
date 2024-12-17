@@ -11,7 +11,7 @@
         "projectName": "AutomateTests",
         "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
         "packagesPath": "C:\\Users\\Abdelbrahim Tounao K\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\AutomateTests\\obj\\",
+        "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Abdelbrahim Tounao K\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,7 +93,7 @@
         "projectName": "Automate",
         "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\Automate\\Automate.csproj",
         "packagesPath": "C:\\Users\\Abdelbrahim Tounao K\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\Automate\\obj\\",
+        "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\Automate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Abdelbrahim Tounao K\\AppData\\Roaming\\NuGet\\NuGet.Config",
