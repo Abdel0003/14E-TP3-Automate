@@ -7505,11 +7505,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
+      "projectUniqueName": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
       "projectName": "AutomateTests",
-      "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
+      "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
       "packagesPath": "C:\\Users\\Abdelbrahim Tounao K\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\obj\\",
+      "outputPath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\AutomateTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Abdelbrahim Tounao K\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7526,8 +7526,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\Automate\\Automate.csproj": {
-              "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\Automate\\Automate.csproj"
+            "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\Automate\\Automate.csproj": {
+              "projectPath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\Automate\\Automate.csproj"
             }
           }
         }

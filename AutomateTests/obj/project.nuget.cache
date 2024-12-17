@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nm3DtGe3a84=",
+  "dgSpecHash": "HmUId1OIMpc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
+  "projectFilePath": "C:\\Users\\Abdelbrahim Tounao K\\source\\repos\\14E-TP3-Automate\\AutomateTests\\AutomateTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Abdelbrahim Tounao K\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Abdelbrahim Tounao K\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
