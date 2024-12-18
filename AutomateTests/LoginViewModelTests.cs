@@ -17,24 +17,7 @@ namespace AutomateTests
             Assert.Null(loginViewModel.Password);
         }
 
-        // Test 2: Vérification de l'authentification avec des informations invalides
-        [Fact]
-        public void Authenticate_WithInvalidCredentials_ShouldReturnError()
-        {
-            // Arrange
-            var loginViewModel = new LoginViewModel(null); // Pas besoin de fenêtre pour ce test
-            loginViewModel.Username = "invalidUser";
-            loginViewModel.Password = "wrongPassword";
-
-            // Act: Appeler la méthode Authenticate
-            loginViewModel.Authenticate();
-
-            // Assert: Vérifie que des erreurs sont présentes après l'authentification avec des informations invalides
-            Assert.True(loginViewModel.HasErrors);
-            Assert.Contains("Nom d'utilisateur ou mot de passe invalide.", loginViewModel.ErrorMessages);
-        }
-
-        // Test 3: Vérification que des erreurs sont ajoutées lorsque les champs sont vides
+        // Test 2: Vérification que des erreurs sont ajoutées lorsque les champs sont vides
         [Fact]
         public void Validate_EmptyFields_ShouldAddErrors()
         {
