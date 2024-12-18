@@ -140,7 +140,7 @@ namespace Automate.ViewModels
 
         // Chemin vers le fichier CSV
         // Chemin vers le fichier CSV
-        private readonly string _csvPath = "C:\\Users\\Abdelbrahim Tounao K\\Source\\Repos\\Automate-Pt.2\\Utils\\TempData.csv";
+        private readonly string _csvPath = @"..\..\..\Utils\TempData.csv";
 
 
         // Timer pour lire les données toutes les 10 secondes
