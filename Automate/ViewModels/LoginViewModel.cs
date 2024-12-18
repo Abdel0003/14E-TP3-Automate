@@ -81,7 +81,7 @@ namespace Automate.ViewModels
         public bool HasPasswordErrors => _errors.ContainsKey(nameof(Password)) && _errors[nameof(Password)].Any();
 
         // Méthodes de validation
-        private void ValidateProperty(string? propertyName)
+        public void ValidateProperty(string? propertyName)
         {
             switch (propertyName)
             {
