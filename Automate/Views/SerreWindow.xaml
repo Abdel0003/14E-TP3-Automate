@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Automate.Views"
-        mc:Ignorable="d"
-        Title="SerreWindow" Height="450" Width="800">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="SerreWindow" Height="600" Width="900">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>

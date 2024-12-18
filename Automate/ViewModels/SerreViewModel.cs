@@ -157,6 +157,7 @@ namespace Automate.ViewModels
 
         public ICommand StartReadingCommand { get; }
         public ICommand StopReadingCommand { get; }
+        public bool IsReading { get; set; }
 
         // Constructeur
         public SerreViewModel()
@@ -177,7 +178,7 @@ namespace Automate.ViewModels
         }
 
         // Méthode pour basculer l'état d'un système
-        private void ToggleSystem(string systemName)
+        public void ToggleSystem(string systemName)
         {
             switch (systemName)
             {
@@ -215,34 +216,131 @@ namespace Automate.ViewModels
         /// <summary>
         /// Démarre la lecture des données météo depuis tempData.csv.
         /// </summary>
-        private void StartReadingData()
+        public void StartReadingData()
         {
+            try
+            {
+                if (_isReading) return;
 
+                if (!File.Exists(_csvPath))
+                {
+                    MessageBox.Show($"Fichier introuvable : {_csvPath}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                _csvLines = new List<string>(File.ReadAllLines(_csvPath)); // Charge les lignes
+                _currentLineIndex = 1; // Ignore l'en-tête
+
+                if (_csvLines.Count <= 1)
+                {
+                    MessageBox.Show("Aucune donnée disponible dans le fichier tempData.csv.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                _isReading = true;
+                _timer = new Timer(ReadNextLine, null, 0, 10000); // Timer : 0ms au début, puis toutes les 10 secondes
+                MessageBox.Show("Lecture des données météo démarrée.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la lecture des données : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+
 
         /// <summary>
         /// Arrête la lecture des données.
         /// </summary>
-        private void StopReadingData()
+        public void StopReadingData()
         {
-
+            if (_isReading && _timer != null)
+            {
+                _timer.Dispose();
+                _isReading = false;
+                MessageBox.Show("Lecture des données météo arrêtée.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
+
 
         /// <summary>
         /// Lit la prochaine ligne de tempData.csv et met à jour les suggestions climatiques.
         /// </summary>
         private void ReadNextLine(object state)
         {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    // Assurez-vous que _csvLines est initialisé
+                    if (_csvLines == null || _csvLines.Count == 0)
+                    {
+                        MessageBox.Show("Les données CSV sont vides ou non initialisées.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        StopReadingData(); // Arrêter la lecture si nécessaire
+                        return;
+                    }
 
+                    if (_currentLineIndex >= _csvLines.Count)
+                    {
+                        StopReadingData();
+                        MessageBox.Show("Toutes les données ont été lues.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+
+                    var line = _csvLines[_currentLineIndex];
+                    var data = line.Split(',');
+
+                    if (data.Length == 4)
+                    {
+                        UpdateClimateSuggestions(data);
+                    }
+
+                    _currentLineIndex++;
+                }
+                catch (Exception ex)
+                {
+                    StopReadingData();
+                    MessageBox.Show($"Erreur lors de la lecture de la ligne : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
         }
+
 
         /// <summary>
         /// Met à jour les suggestions climatiques en fonction des données lues.
         /// </summary>
         /// <param name="data">Tableau contenant les valeurs de la ligne CSV.</param>
-        private void UpdateClimateSuggestions(string[] data)
+        public void UpdateClimateSuggestions(string[] data)
         {
+            if (double.TryParse(data[1], NumberStyles.Float, CultureInfo.InvariantCulture, out double temperature))
+            {
+                TemperatureSuggestion = temperature > 30
+                    ? "Température élevée, activez le ventilateur."
+                    : temperature < 18
+                        ? "Température basse, activez le chauffage."
+                        : "Température optimale.";
+            }
 
+            if (double.TryParse(data[2], NumberStyles.Float, CultureInfo.InvariantCulture, out double humidity))
+            {
+                HumiditySuggestion = humidity < 40
+                    ? "Humidité faible, activez l'arrosage."
+                    : humidity > 70
+                        ? "Humidité élevée, réduisez l'arrosage."
+                        : "Humidité optimale.";
+            }
+
+            if (double.TryParse(data[3], NumberStyles.Float, CultureInfo.InvariantCulture, out double luminosity))
+            {
+                LuminositySuggestion = luminosity < 300
+                    ? "Luminosité faible, activez les lumières."
+                    : "Luminosité optimale.";
+            }
+
+            // Déclenche la notification pour la vue
+            OnPropertyChanged(nameof(TemperatureSuggestion));
+            OnPropertyChanged(nameof(HumiditySuggestion));
+            OnPropertyChanged(nameof(LuminositySuggestion));
         }
 
         // Implémentation de l'interface INotifyPropertyChanged
