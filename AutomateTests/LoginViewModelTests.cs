@@ -1,124 +1,55 @@
-﻿//using Automate.Utils;
-//using Automate.Views;
-//using Automate.ViewModels;
-//using Xunit;
-//using System;
-//using System.Windows;
-//using Automate.Models;
+﻿using Automate.ViewModels;
+using Xunit;
 
-//namespace AutomateTests
-//{
-//    public class LoginViewModelTests
-//    {
-//        private readonly LoginViewModel _viewModel;
+namespace AutomateTests
+{
+    public class LoginViewModelTests
+    {
+        // Test 1: Vérification de l'état initial de Username et Password
+        [Fact]
+        public void InitialProperties_ShouldBeNull()
+        {
+            // Arrange
+            var loginViewModel = new LoginViewModel(null); // On ne passe pas de fenêtre ici car ce test ne dépend pas de la navigation
 
-//        public LoginViewModelTests()
-//        {
-//            // Créer le ViewModel avec une fenêtre fictive
-//            _viewModel = new LoginViewModel(new Window());
-//        }
+            // Assert: Vérifie que les propriétés Username et Password sont nulles au départ
+            Assert.Null(loginViewModel.Username);
+            Assert.Null(loginViewModel.Password);
+        }
 
-//        [Fact]
-//        public void Username_ShouldBeValid_WhenSetToNonEmptyValue()
-//        {
-//            // Arrange
-//            var username = "admin";
+        // Test 2: Vérification de l'authentification avec des informations invalides
+        [Fact]
+        public void Authenticate_WithInvalidCredentials_ShouldReturnError()
+        {
+            // Arrange
+            var loginViewModel = new LoginViewModel(null); // Pas besoin de fenêtre pour ce test
+            loginViewModel.Username = "invalidUser";
+            loginViewModel.Password = "wrongPassword";
 
-//            // Act
-//            _viewModel.Username = username;
+            // Act: Appeler la méthode Authenticate
+            loginViewModel.Authenticate();
 
-//            // Assert
-//            Assert.Equal(username, _viewModel.Username);
-//            Assert.False(_viewModel.HasErrors);
-//        }
+            // Assert: Vérifie que des erreurs sont présentes après l'authentification avec des informations invalides
+            Assert.True(loginViewModel.HasErrors);
+            Assert.Contains("Nom d'utilisateur ou mot de passe invalide.", loginViewModel.ErrorMessages);
+        }
 
-//        [Fact]
-//        public void Username_ShouldBeInvalid_WhenSetToEmptyValue()
-//        {
-//            // Arrange
-//            var username = "";
+        // Test 3: Vérification que des erreurs sont ajoutées lorsque les champs sont vides
+        [Fact]
+        public void Validate_EmptyFields_ShouldAddErrors()
+        {
+            // Arrange
+            var loginViewModel = new LoginViewModel(null); // Pas besoin de fenêtre pour ce test
 
-//            // Act
-//            _viewModel.Username = username;
+            // Act: Essayer de valider avec des champs vides
+            loginViewModel.ValidateProperty(nameof(loginViewModel.Username)); // Valider Username vide
+            loginViewModel.ValidateProperty(nameof(loginViewModel.Password)); // Valider Password vide
 
-//            // Assert
-//            Assert.True(_viewModel.HasErrors);
-//            Assert.Contains("Le nom d'utilisateur ne peut pas être vide.", _viewModel.ErrorMessages);
-//        }
+            // Assert: Vérifie que des erreurs ont été ajoutées
+            Assert.True(loginViewModel.HasErrors);
+            Assert.Contains("Le nom d'utilisateur ne peut pas être vide.", loginViewModel.ErrorMessages);
+            Assert.Contains("Le mot de passe ne peut pas être vide.", loginViewModel.ErrorMessages);
+        }
 
-//        [Fact]
-//        public void Password_ShouldBeValid_WhenSetToNonEmptyValue()
-//        {
-//            // Arrange
-//            var password = "admin123";
-
-//            // Act
-//            _viewModel.Password = password;
-
-//            // Assert
-//            Assert.Equal(password, _viewModel.Password);
-//            Assert.False(_viewModel.HasErrors);
-//        }
-
-//        [Fact]
-//        public void Password_ShouldBeInvalid_WhenSetToEmptyValue()
-//        {
-//            // Arrange
-//            var password = "";
-
-//            // Act
-//            _viewModel.Password = password;
-
-//            // Assert
-//            Assert.True(_viewModel.HasErrors);
-//            Assert.Contains("Le mot de passe ne peut pas être vide.", _viewModel.ErrorMessages);
-//        }
-
-//        [Fact]
-//        public void Authenticate_ShouldFail_WhenUserNotFound()
-//        {
-//            // Arrange
-//            _viewModel.Username = "wrongUser";
-//            _viewModel.Password = "wrongPassword";
-
-//            // Ici, nous utilisons une méthode simple de comparaison, car MongoDBService est réel
-//            // Simuler une authentification en utilisant un utilisateur fictif ou une fausse méthode
-//            var user = AuthenticateFake(_viewModel.Username, _viewModel.Password);
-
-//            // Act
-//            _viewModel.Authenticate();
-
-//            // Assert
-//            Assert.Contains("Nom d'utilisateur ou mot de passe invalide.", _viewModel.ErrorMessages);
-//        }
-
-//        [Fact]
-//        public void Authenticate_ShouldSucceed_WhenUserIsFound()
-//        {
-//            // Arrange
-//            _viewModel.Username = "admin";
-//            _viewModel.Password = "admin123";
-
-//            // Simuler l'authentification avec un utilisateur valide
-//            var user = AuthenticateFake(_viewModel.Username, _viewModel.Password);
-
-//            // Act
-//            _viewModel.Authenticate();
-
-//            // Assert
-//            // Si l'utilisateur existe, la navigation doit se produire.
-//            Assert.False(_viewModel.HasErrors);
-//        }
-
-//        // Méthode pour simuler l'authentification
-//        private UserModel AuthenticateFake(string username, string password)
-//        {
-//            // Cette méthode simule une authentification en renvoyant un utilisateur fictif
-//            if (username == "admin" && password == "admin123")
-//            {
-//                return new UserModel { Username = username, Password = password, Role = "Administrator" };
-//            }
-//            return null;
-//        }
-//    }
-//}
+    }
+}

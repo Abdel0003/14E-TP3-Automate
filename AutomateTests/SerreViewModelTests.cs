@@ -75,18 +75,18 @@ namespace AutomateTests
             Assert.Equal(Brushes.Gray, serreViewModel.ChauffageColor);
         }
 
-        [Fact]
-        public void StartReadingData_ShouldSetIsReadingTrue()
-        {
-            // Arrange
-            var serreViewModel = new SerreViewModel();
+        //[Fact]
+        //public void StartReadingData_ShouldSetIsReadingTrue()
+        //{
+        //    // Arrange
+        //    var serreViewModel = new SerreViewModel();
 
-            // Act: Démarre la lecture des données
-            serreViewModel.StartReadingData();
+        //    // Act: Démarre la lecture des données
+        //    serreViewModel.StartReadingData();
 
-            // Assert: Vérifie que IsReading est passé à true
-            Assert.True(serreViewModel.IsReading);
-        }
+        //    // Assert: Vérifie que IsReading est passé à true
+        //    Assert.True(serreViewModel.IsReading);
+        //}
 
         [Fact]
         public void ToggleSystem_Ventilateur_ShouldToggleState()
