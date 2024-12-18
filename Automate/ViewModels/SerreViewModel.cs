@@ -8,7 +8,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using Automate.Models;
 using Automate.Utils;
+using SharpCompress.Common;
 
 namespace Automate.ViewModels
 {
@@ -218,6 +220,7 @@ namespace Automate.ViewModels
         /// </summary>
         public void StartReadingData()
         {
+
             try
             {
                 if (_isReading) return;
